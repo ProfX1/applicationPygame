@@ -4,7 +4,7 @@ pygame.init()
 
 #code pour la balle qui va rebondir
 size = width, height = 1700, 1500
-speed = [4, 4]
+speed = [8, 8]
 black = 0, 0, 0
  
 screen = pygame.display.set_mode(size)
