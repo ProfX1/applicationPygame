@@ -66,18 +66,34 @@ while running:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if event.button == 1:  # Left mouse button
                 if square1_x < mouse_x < square1_x + SQUARE_SIZE and square1_y < mouse_y < square1_y + SQUARE_SIZE:
-                    score += 1
-                    square1_x, square1_y = reset_square1()
+                    if ballrect.collidepoint(mouse_x, mouse_y):
+                        score -= 1  # reduce score if clicked on the ball
+                    else:
+                        score += 1
+                        square1_x, square1_y = reset_square1()
                 elif square2_x < mouse_x < square2_x + SQUARE_SIZE and square2_y < mouse_y < square2_y + SQUARE_SIZE:
-                    score -= 1
-                    square2_x, square2_y = reset_square2()
+                    if ballrect.collidepoint(mouse_x, mouse_y):
+                        score -= 1  # reduce score if clicked on the ball
+                    else:
+                        score -= 1
+                        square2_x, square2_y = reset_square2()
+                elif ballrect.collidepoint(mouse_x, mouse_y):
+                    score -= 1  # reduce score if clicked on the ball
             elif event.button == 3:  # Right mouse button
                 if square1_x < mouse_x < square1_x + SQUARE_SIZE and square1_y < mouse_y < square1_y + SQUARE_SIZE:
-                    score -= 1
-                    square1_x, square1_y = reset_square1()
+                    if ballrect.collidepoint(mouse_x, mouse_y):
+                        score -= 1  # reduce score if clicked on the ball
+                    else:
+                        score -= 1
+                        square1_x, square1_y = reset_square1()
                 elif square2_x < mouse_x < square2_x + SQUARE_SIZE and square2_y < mouse_y < square2_y + SQUARE_SIZE:
-                    score += 1
-                    square2_x, square2_y = reset_square2()
+                    if ballrect.collidepoint(mouse_x, mouse_y):
+                        score -= 1  # reduce score if clicked on the ball
+                    else:
+                        score += 1
+                        square2_x, square2_y = reset_square2()
+                elif ballrect.collidepoint(mouse_x, mouse_y):
+                    score -= 1  # reduce score if clicked on the ball
     
 
 
