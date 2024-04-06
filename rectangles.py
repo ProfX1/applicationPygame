@@ -79,17 +79,19 @@ while running:
                     score += 1
                     square2_x, square2_y = reset_square2()
     
-    #move the ball around
+
+
+    # Draw square
+    pygame.draw.rect(screen, square_color1, (square1_x, square1_y, SQUARE_SIZE, SQUARE_SIZE))
+    pygame.draw.rect(screen, square_color2, (square2_x, square2_y, SQUARE_SIZE, SQUARE_SIZE))
+
+        #move the ball around
     ballrect = ballrect.move(speed)
     if ballrect.left < 0 or ballrect.right > WIDTH:
         speed[0] = -speed[0]
     if ballrect.top < 0 or ballrect.bottom > HEIGHT:
         speed[1] = -speed[1]
     screen.blit(ball, ballrect)
-
-    # Draw square
-    pygame.draw.rect(screen, square_color1, (square1_x, square1_y, SQUARE_SIZE, SQUARE_SIZE))
-    pygame.draw.rect(screen, square_color2, (square2_x, square2_y, SQUARE_SIZE, SQUARE_SIZE))
 
     # Display score
     draw_text(screen, f"Score: {score}", 10, 10)
