@@ -9,7 +9,7 @@ black = 0, 0, 0
  
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
-ball = pygame.image.load("ball.gif")
+ball = pygame.image.load("balle.png")
 ballrect = ball.get_rect()
  
 while 1:
