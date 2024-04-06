@@ -3,13 +3,13 @@ pygame.init()
  
 
 #code pour la balle qui va rebondir
-size = width, height = 320, 240
-speed = [2, 2]
+size = width, height = 1700, 1500
+speed = [4, 4]
 black = 0, 0, 0
  
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
-ball = pygame.image.load("balle.png")
+ball = pygame.image.load("applicationPygame\\image\\balle.png")
 ballrect = ball.get_rect()
  
 while 1:
