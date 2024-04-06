@@ -10,6 +10,12 @@ WIDTH, HEIGHT = 1700, 1500
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Click Game")
 
+
+#defime ball
+ball = pygame.image.load("applicationPygame\\image\\balle.png")
+ballrect = ball.get_rect()
+speed = [8, 8]
+
 # Define colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -72,6 +78,14 @@ while running:
                 elif square2_x < mouse_x < square2_x + SQUARE_SIZE and square2_y < mouse_y < square2_y + SQUARE_SIZE:
                     score += 1
                     square2_x, square2_y = reset_square2()
+    
+    #move the ball around
+    ballrect = ballrect.move(speed)
+    if ballrect.left < 0 or ballrect.right > WIDTH:
+        speed[0] = -speed[0]
+    if ballrect.top < 0 or ballrect.bottom > HEIGHT:
+        speed[1] = -speed[1]
+    screen.blit(ball, ballrect)
 
     # Draw square
     pygame.draw.rect(screen, square_color1, (square1_x, square1_y, SQUARE_SIZE, SQUARE_SIZE))
