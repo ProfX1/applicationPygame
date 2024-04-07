@@ -244,16 +244,16 @@ def main_Menu():
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # Vérifier si le bouton "Highscores" est cliqué
-                if 250 < event.pos[0] < 350 and 180 < event.pos[1] < 220:
+                if 350 < event.pos[0] < 450 and 280 < event.pos[1] < 320:
                     show_highscores_flag = True
                     new_game_flag = False  # Assurez-vous que new_game_flag est défini sur False lorsque vous affichez les highscores
                 # Vérifier si le bouton "Nouvelle Partie" est cliqué
-                elif 250 < event.pos[0] < 350 and 80 < event.pos[1] < 120:
+                elif 350 < event.pos[0] < 450 and 180 < event.pos[1] < 220:
                     new_game_flag = True
                     show_highscores_flag = False  # Masquer les highscores lorsque vous démarrez une nouvelle partie
                     game_code()  # Appeler la fonction game_code pour démarrer le jeu
                 # Vérifier si le bouton "Quitter" est cliqué
-                elif 250 < event.pos[0] < 350 and 280 < event.pos[1] < 320:
+                elif 350 < event.pos[0] < 450 and 380 < event.pos[1] < 420:
                     pygame.quit()  # Quitter Pygame
                     sys.exit()     # Quitter le script
 
