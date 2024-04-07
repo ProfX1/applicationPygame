@@ -6,14 +6,22 @@ import sys
 pygame.init()
 
 # Set up the screen
-WIDTH, HEIGHT = 1700, 1500
+WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Click Game")
 
 
 #defime ball
 ball = pygame.image.load("applicationPygame\\image\\balle.png")
-ballrect = ball.get_rect()
+# Define the scale factor for resizing (e.g., 0.5 for half the size)
+scale_factor = 0.25
+
+# Resize the ball image
+resized_ball = pygame.transform.scale(ball, (int(ball.get_width() * scale_factor), int(ball.get_height() * scale_factor)))
+
+# Get the rectangle of the resized ball
+ballrect = resized_ball.get_rect()
+# ballrect = ball.get_rect()
 speed = [8, 8]
 
 # Define colors
@@ -109,7 +117,7 @@ while running:
         speed[0] = -speed[0]
     if ballrect.top < 0 or ballrect.bottom > HEIGHT:
         speed[1] = -speed[1]
-    screen.blit(ball, ballrect)
+    screen.blit(resized_ball, ballrect)
 
     # Display score
     draw_text(screen, f"Score: {score}", 10, 10)
