@@ -26,7 +26,7 @@ def draw_button(text, position):
 def show_highscores():
     # Chargement des highscores à partir d'un fichier
     try:
-        with open('highscores.json', 'r') as f:
+        with open('applicationPygame\\highscores.json', 'r') as f:
             highscores = json.load(f)
     except FileNotFoundError:
         highscores = []
@@ -47,12 +47,12 @@ def save_score(score):
     name = input("Enter your name: ")
     new_score = {'nom': name, 'score': score}
     try:
-        with open('highscores.json', 'r') as f:
+        with open('applicationPygame\\highscores.json', 'r') as f:
             highscores = json.load(f)
     except FileNotFoundError:
         highscores = []
     highscores.append(new_score)
-    with open('highscores.json', 'w') as f:
+    with open('applicationPygame\\highscores.json', 'w') as f:
         json.dump(highscores, f)
 
 # Code pour la balle qui va rebondir
