@@ -1,5 +1,5 @@
 # applicationPygame
-application pygame groupe Roxane, Danick, Xavier
+application pygame groupe Roxane, Xavier
 
 
 Pour ce dernier projet vous devrez créé un petit jeu vidéos: FastClick
