@@ -46,8 +46,8 @@ def show_highscores():
         screen.blit(text_render, (50, 50 + i * line_height))
 
 # Fonction pour saisir le nom du joueur et enregistrer le score
-def save_score(score):
-    name = input("Enter your name: ")
+def save_score(score, name):
+    
     new_score = {'nom': name, 'score': score}
     try:
         with open('applicationPygame\\highscores.json', 'r') as f:
@@ -191,7 +191,7 @@ def game_code():
 
         # Check if time is up
         if remaining_time <= 0:
-            save_score(score)  # Call function to save score
+            
             running = False  # End game
             def text_input():
                 text = ""
@@ -221,7 +221,7 @@ def game_code():
             # Main loop
             def main():
                 name = text_input()
-                print("You entered:", name)
+                save_score(score, name)  # Call function to save score
 
             if __name__ == "__main__":
                 main()
