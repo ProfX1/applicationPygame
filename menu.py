@@ -272,7 +272,6 @@ while running:
     # Si le drapeau pour afficher les highscores est vrai, afficher les highscores
     if show_highscores_flag:
         show_highscores()
-
     pygame.display.flip()
 
 # Quitter Pygame (cette partie ne sera jamais atteinte mais c'est une bonne pratique)
