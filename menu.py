@@ -12,7 +12,7 @@ WHITE = (255, 255, 255)
 score_colors = [(255, 255, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (128, 128, 128), (128, 0, 0), (0, 128, 0)]
 
 # Création de la fenêtre de jeu
-screen = pygame.display.set_mode((600, 400))
+screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Menu du Jeu')
 
 # Fonction pour dessiner un bouton
@@ -59,7 +59,7 @@ def save_score(score, name):
         json.dump(highscores, f)
 
 # Code pour la balle qui va rebondir
-size = width, height = 1700, 1500
+size = width, height = 800, 600
 speed = [8, 8]
 black = 0, 0, 0
 clock = pygame.time.Clock()
@@ -103,12 +103,12 @@ def game_code():
     clock = pygame.time.Clock()
     start_time = pygame.time.get_ticks()
 
-    # Function to display text
+    # Function to display text to ask for your name
     def draw_text(surface, text, x, y):
         text_surface = font.render(text, True, BLACK)
         surface.blit(text_surface, (x, y))
 
-    # Function to reset square position
+    # Functions to reset square position
     def reset_square1():
         x = random.randint(0, WIDTH - SQUARE_SIZE)
         y = random.randint(0, HEIGHT - SQUARE_SIZE)
@@ -222,6 +222,7 @@ def game_code():
             def main():
                 name = text_input()
                 save_score(score, name)  # Call function to save score
+                main_Menu()
 
             if __name__ == "__main__":
                 main()
@@ -230,50 +231,53 @@ def game_code():
         pygame.display.flip()
         clock.tick(60)
 
-# Boucle principale
-running = True
-show_highscores_flag = False  # Définir un indicateur pour afficher les highscores
-new_game_flag = False  # Définir un indicateur pour démarrer un nouveau jeu
+def main_Menu():
 
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            # Vérifier si le bouton "Highscores" est cliqué
-            if 250 < event.pos[0] < 350 and 180 < event.pos[1] < 220:
-                show_highscores_flag = True
-                new_game_flag = False  # Assurez-vous que new_game_flag est défini sur False lorsque vous affichez les highscores
-            # Vérifier si le bouton "Nouvelle Partie" est cliqué
-            elif 250 < event.pos[0] < 350 and 80 < event.pos[1] < 120:
-                new_game_flag = True
-                show_highscores_flag = False  # Masquer les highscores lorsque vous démarrez une nouvelle partie
-                game_code()  # Appeler la fonction game_code pour démarrer le jeu
-            # Vérifier si le bouton "Quitter" est cliqué
-            elif 250 < event.pos[0] < 350 and 280 < event.pos[1] < 320:
-                pygame.quit()  # Quitter Pygame
-                sys.exit()     # Quitter le script
+    # Boucle principale
+    running = True
+    show_highscores_flag = False  # Définir un indicateur pour afficher les highscores
+    new_game_flag = False  # Définir un indicateur pour démarrer un nouveau jeu
 
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                # Retour au menu principal
-                show_highscores_flag = False
-                new_game_flag = False
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # Vérifier si le bouton "Highscores" est cliqué
+                if 250 < event.pos[0] < 350 and 180 < event.pos[1] < 220:
+                    show_highscores_flag = True
+                    new_game_flag = False  # Assurez-vous que new_game_flag est défini sur False lorsque vous affichez les highscores
+                # Vérifier si le bouton "Nouvelle Partie" est cliqué
+                elif 250 < event.pos[0] < 350 and 80 < event.pos[1] < 120:
+                    new_game_flag = True
+                    show_highscores_flag = False  # Masquer les highscores lorsque vous démarrez une nouvelle partie
+                    game_code()  # Appeler la fonction game_code pour démarrer le jeu
+                # Vérifier si le bouton "Quitter" est cliqué
+                elif 250 < event.pos[0] < 350 and 280 < event.pos[1] < 320:
+                    pygame.quit()  # Quitter Pygame
+                    sys.exit()     # Quitter le script
 
-    # Remplissage de l'écran
-    screen.fill((50, 50, 50))
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    # Retour au menu principal
+                    show_highscores_flag = False
+                    new_game_flag = False
 
-    # Dessin des boutons du menu principal uniquement si new_game_flag est False et show_highscores_flag est False
-    if not new_game_flag and not show_highscores_flag:
-        draw_button('Nouvelle Partie', (300, 100))
-        draw_button('Highscores', (300, 200))
-        draw_button('Quitter', (300, 300))
+        # Remplissage de l'écran
+        screen.fill((50, 50, 50))
 
-    # Si le drapeau pour afficher les highscores est vrai, afficher les highscores
-    if show_highscores_flag:
-        show_highscores()
-    pygame.display.flip()
+        # Dessin des boutons du menu principal uniquement si new_game_flag est False et show_highscores_flag est False
+        if not new_game_flag and not show_highscores_flag:
+            draw_button('Nouvelle Partie', (400, 200))
+            draw_button('Highscores', (400, 300))
+            draw_button('Quitter', (400, 400))
 
-# Quitter Pygame (cette partie ne sera jamais atteinte mais c'est une bonne pratique)
-pygame.quit()
-sys.exit()
+        # Si le drapeau pour afficher les highscores est vrai, afficher les highscores
+        if show_highscores_flag:
+            show_highscores()
+        pygame.display.flip()
+
+    # Quitter Pygame (cette partie ne sera jamais atteinte mais c'est une bonne pratique)
+    pygame.quit()
+    sys.exit()
+main_Menu()
