@@ -9,6 +9,7 @@ pygame.init()
 # Définition des couleurs
 RED = (255, 0, 0)
 WHITE = (255, 255, 255)
+score_colors = [(255, 255, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (128, 128, 128), (128, 0, 0), (0, 128, 0)]
 
 # Création de la fenêtre de jeu
 screen = pygame.display.set_mode((600, 400))
@@ -38,8 +39,10 @@ def show_highscores():
     font = pygame.font.Font(None, 36)
     line_height = 40  # Définir la hauteur de ligne constante entre chaque score
     for i, score in enumerate(highscores[:10]):
+        # Sélectionner une couleur de la liste pour ce score
+        color = score_colors[i % len(score_colors)]
         text = f"{i+1}. {score['nom']} - {score['score']}"
-        text_render = font.render(text, True, WHITE)
+        text_render = font.render(text, True, color)  # Utiliser la couleur sélectionnée
         screen.blit(text_render, (50, 50 + i * line_height))
 
 # Fonction pour saisir le nom du joueur et enregistrer le score
