@@ -89,19 +89,7 @@ while running:
     if show_highscores_flag:
         show_highscores()
 
-    # Si le drapeau pour démarrer une nouvelle partie est vrai, dessiner la balle
-    if new_game_flag:
-        ballrect = ballrect.move(speed)
-        if ballrect.left < 0 or ballrect.right > width:
-            speed[0] = -speed[0]
-        if ballrect.top < 0 or ballrect.bottom > height:
-            speed[1] = -speed[1]
-        screen.blit(ball, ballrect)
-
-    # Mise à jour de l'affichage
     pygame.display.flip()
-    clock.tick(60)
 
-# Quitter Pygame (cette partie ne sera jamais atteinte mais c'est une bonne pratique)
 pygame.quit()
 sys.exit()
